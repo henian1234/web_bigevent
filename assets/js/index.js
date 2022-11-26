@@ -30,22 +30,23 @@ function getUserInfo() {
         {
         if(res.status!==0)
         {
-           
+          
            return layui.layer.msg('获取用户信息失败')
            
         }
         //调用renderAvatar渲染用户头像
+       
         renderAvatar(res.data)
         
         },
         //无论成功失败都调用complete
-        complete:function(res){
-            if(res.responseJSON.status===1&&res.responseJSON.message==="身份认证失败！")
-             {
-                 localStorage.removeItem('token')
-                 location.href = '/login.html'
-             }
-        }
+        // complete:function(res){
+        //     if(res.responseJSON.status===1&&res.responseJSON.message==="身份认证失败！")
+        //      {
+        //          localStorage.removeItem('token')
+        //          location.href = '/login.html'
+        //      }
+        // }
     })
 }
 function  renderAvatar(user){
@@ -56,13 +57,15 @@ function  renderAvatar(user){
         // 按需求渲染头像
         if(user.user_pic!==null ){
             // 渲染图片头像
-            $('.layui-nav-img').attr('src',user_pic).show()
-            $('.text-avatar').hide
+            $('.layui-nav-img').attr('src',user.user_pic).show()
+            $('.text-avatar').hide()
         
         }
         // 渲染文本头像
         else{        
             $('.layui-nav-img').hide()
-            $('.text-avatar').html(name[0].toUpperCase()).show()
+            var first = name[0].toUpperCase()
+            $('.text-avatar').html(first).show()
+            
         }
 }
