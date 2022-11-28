@@ -6,7 +6,7 @@ $.ajaxPrefilter(function(option){
     // 拼接url
     option.url='http://api-breakingnews-web.itheima.net'+option.url;
     //设置headers请求头
-
+    
 
     if(option.url.indexOf('/my/'!== -1)){
     option.headers={
